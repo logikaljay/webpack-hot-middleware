@@ -35,7 +35,7 @@ function webpackHotMiddleware(compiler, opts) {
   }
   var middleware = function(req, res, next) {
     if (closed) return next();
-    if (!pathMatch(req.url, opts.path)) return next();
+    if (!pathMatch(req.originalUrl, opts.path)) return next();
     eventStream.handler(req, res);
     if (latestStats) {
       // Explicitly not passing in `log` fn as we don't want to log again on
